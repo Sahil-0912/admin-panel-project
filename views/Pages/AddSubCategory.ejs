@@ -1,0 +1,85 @@
+<%- include('../layouts/Headsection') -%>
+
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+      <%- include('../layouts/Header') -%>
+        <%- include('../layouts/Sidebar') -%>
+
+          <div class="page-wrapper">
+
+            <div class="page-breadcrumb">
+              <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                  <!-- <h4 class="page-title">Dashboard</h4> -->
+                  <div class="ms-auto text-end">
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                          Add
+                        </li>
+                      </ol>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+
+                <form class="form-horizontal" method="post" action="/api/subcategory">
+                  <div class="card-body">
+                    <h4 class="card-title">Add Sub Category</h4>
+
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Category Name</label>
+                      <div class="col-sm-9">
+                        <select name="category" class="form-select mb-5">
+                          <option>-- select category --</option>
+                          <% categories.forEach((cat)=> { %>
+                            <option value="<%= cat._id %>"> <%=cat.cat_name %> </option>
+                            <%}) %>
+                        </select>
+                      </div>
+
+
+                      <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">SubCat Name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="fname" name="sub_cat"
+                            placeholder="Category Name Here" />
+                        </div>
+
+                        <div class="border-top">
+                          <div class="card-body">
+                            <button class="btn btn-primary">
+                              Submit
+                            </button>
+                          </div>
+                        </div>
+                </form>
+              </div>
+            </div>
+            <footer class="footer text-center">
+              All Rights Reserved by Matrix-admin. Designed and Developed by
+              <a href="https://www.wrappixel.com">WrapPixel</a>.
+            </footer>
+
+          </div>
+
+    </div>
+
+    <%- include('../layouts/jslink') -%>
+
+  </body>
+
+  </html>

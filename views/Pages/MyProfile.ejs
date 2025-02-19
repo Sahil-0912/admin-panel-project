@@ -1,0 +1,129 @@
+<%- include('../layouts/Headsection') -%>
+
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+      <%- include('../layouts/Header') -%>
+        <%- include('../layouts/Sidebar') -%>
+
+          <div class="page-wrapper">
+
+            <div class="page-breadcrumb">
+              <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                  <!-- <h4 class="page-title">Dashboard</h4> -->
+                  <div class="ms-auto text-end">
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                          Add
+                        </li>
+                      </ol>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row justify-content-center">
+                <form
+                  class="form-horizontal shadow col-10 col-md-8 col-lg-6 mx-auto my-5 bg-light shadow p-5 text-center"
+                  method="post"
+                  enctype="multipart/form-data"
+                  action="/api/admin/updateprofile"
+                >
+                  <div class="card-body">
+                    <!-- Profile Heading -->
+                    <h4 class="card-title mb-4 fs-3 fw-bold">My Profile</h4>
+                    
+                    <!-- Profile Image -->
+                    <div class="d-flex justify-content-center mb-4">
+                      <img
+                        src="public/<%= admin.admin_profile %>"
+                        class="rounded-circle "
+                        alt="Admin Photo"
+                        style="width: 150px; height: 150px; object-fit: cover;"
+                      />
+                    </div>
+            
+                    <!-- Username Field -->
+                    <div class="form-group row mb-3">
+                      <label for="username" class="col-sm-3 text-end control-label col-form-label">UserName:</label>
+                      <div class="col-sm-9">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="username"
+                          name="username"
+                          value="<%= admin.username %>"
+                          placeholder="Enter your username"
+                        />
+                      </div>
+                    </div>
+            
+                    <!-- Email Field -->
+                    <div class="form-group row mb-3">
+                      <label for="email" class="col-sm-3 text-end control-label col-form-label">Email:</label>
+                      <div class="col-sm-9">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="email"
+                          name="email"
+                          value="<%= admin.email %>"
+                          disabled
+                          placeholder="Your email"
+                        />
+                      </div>
+                    </div>
+            
+                    <!-- Hidden Email Field -->
+                    <input type="hidden" name="email" value="<%= admin.email %>" />
+            
+                    <!-- Admin Profile Upload -->
+                    <div class="form-group row mb-4">
+                      <label for="admin_profile" class="col-sm-3 text-end control-label col-form-label">Admin Profile:</label>
+                      <div class="col-sm-9">
+                        <input
+                          type="file"
+                          id="admin_profile"
+                          name="admin_profile"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+            
+                    <!-- Update Button -->
+                    <div class="border-top pt-3">
+                      <button type="submit" class="btn btn-outline-danger w-100">
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+            <footer class="footer text-center">
+              All Rights Reserved by Matrix-admin. Designed and Developed by
+              <a href="https://www.wrappixel.com">WrapPixel</a>.
+            </footer>
+
+          </div>
+
+    </div>
+
+    <%- include('../layouts/jslink') -%>
+
+  </body>
+
+  </html>

@@ -1,0 +1,85 @@
+<%- include('../layouts/Headsection') -%>
+
+    <body>
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+
+        <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+            data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+            <%- include('../layouts/Header') -%>
+                <%- include('../layouts/Sidebar') -%>
+
+                    <div class="page-wrapper">
+                        <div class="page-breadcrumb">
+                            <div class="row">
+                                <div class="col-12 d-flex no-block align-items-center">
+                                    <h4 class="page-title">View</h4>
+                                    <div class="ms-auto text-end">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    Add
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+
+
+                                <table class="table table-hover table-bordered table-dark">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Category </th>
+                                            <th scope="col">Sub Category</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% subcategories.forEach((ele,index)=>{%>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= index+1 %>
+                                                </th>
+                                                <td>
+                                                    <%=ele?.category?.cat_name%>
+                                                </td>
+                                                <td>
+                                                    <%=ele.sub_cat%>
+                                                </td>
+                                                <td>
+                                                    <a href="/api/subcategory/<%= ele._id %>"
+                                                        class="btn btn-outline-danger mx-2">Delete</a>
+                                                    <a href="/UpdateSubCategory?id=<%= ele._id %>"
+                                                        class="btn btn-outline-warning">Update</a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <footer class="footer text-center">
+                            All Rights Reserved by Matrix-admin. Designed and Developed by
+                            <a href="https://www.wrappixel.com">WrapPixel</a>.
+                        </footer>
+
+                    </div>
+
+        </div>
+
+        <%- include('../layouts/jslink') -%>
+
+    </body>
+
+    </html>
