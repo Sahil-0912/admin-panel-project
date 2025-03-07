@@ -1,4 +1,4 @@
-exports.ForgotMail = (username,token) => {
+exports.ForgotMail = (username, token) => {
     return `
     < html >
         <body style="font-family: sans-serif;">
@@ -6,7 +6,7 @@ exports.ForgotMail = (username,token) => {
                 <table align="center" cellspacing="0" cellpadding="0">
                     <tbody style="font-size: 18px;">
                         <tr>
-                            <h1>Hi ${username},</h1>
+                            <h1>Hi ${username.username},</h1>
                         </tr>
                         <tr>
                             <p>We received a request to reset the password on your account.</p>
@@ -19,8 +19,7 @@ exports.ForgotMail = (username,token) => {
                             <td>
                                 <table cellspacing="0" cellpadding="0" align="center">
                                     <tr>
-                                        <td style="text-align: center; border-radius: 8px; padding: 8px; width: 150px; height: 30px;" bgColor="#79ff66" />
-                                        <a style="color: black; text-decoration: none;" class="link" href="" target="_blank">${token}</a>
+                                        <a style="color: black; text-decoration: none;" class="link" href="" target="_blank">Your Token: ${token}</a>
                                     </tr>
                                 </table>
                             </td>
@@ -30,6 +29,6 @@ exports.ForgotMail = (username,token) => {
             </center>
         </body>
 
-</html >
+</html >
 `
 }

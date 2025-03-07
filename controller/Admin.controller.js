@@ -2,7 +2,7 @@ const sendemail = require("../config/mail")
 const admin = require("../model/admin.model")
 const otpGenerator = require('otp-generator')
 const { plainToHash, HashToPlain } = require("../utils/password")
-const {  ForgotMail } = require("../utils/ForgotMailer")
+const { ForgotMail } = require("../utils/ForgotMailer")
 
 exports.register = async (req, res) => {
     // console.log(req.body);
@@ -97,6 +97,7 @@ exports.changepassowrd = async (req, res) => {
                             password: hash_pass
                         }
                     )
+                    req.flash("info", "your password has been changed..!")
                     res.redirect('/ChangePassword')
                 } else {
                     res.json("new password does not match")
@@ -113,18 +114,37 @@ exports.changepassowrd = async (req, res) => {
 }
 
 exports.forgetpassword = async (req, res) => {
-    const { email } = req.body
+    // const { email } = req.body
+
+    // const existemail = await admin.findOne({ email }).countDocuments().exec()
+
+    // if (existemail > 0) {
+    //     var otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
+    //     await sendemail(email, 'forgetpassword', ForgotMail(otp))
+    //     const Admin = await admin.updateOne({ email }, { token: otp })
+    //     req.flash('info', 'check your email')
+    //     res.redirect('/login')
+    // } else {
+    //     req.flash('info', "email dose not exist")
+    //     res.redirect('/login')
+    // }
+    const { username, email } = req.body
 
     const existemail = await admin.findOne({ email }).countDocuments().exec()
-
     if (existemail > 0) {
+
+        // var otp = Math.floor(Math.random() * 1000000)
         var otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
-        await sendemail(email, 'forgetpassword', ForgotMail(otp))
-        const Admin = await admin.updateOne({ email }, { token: otp })
-        req.flash('info', 'check your email')
+        //to enter token in database
+        await admin.updateOne({ email }, { token: otp })
+
+        const username = await admin.findOne({ email })
+
+        await sendemail(email, "forgot password", ForgotMail(username, otp))
+        req.flash('info', 'check your email....')
         res.redirect('/login')
     } else {
-        req.flash('info', "email dose not exist")
+        req.flash('info', 'email does not exist')
         res.redirect('/login')
     }
 }

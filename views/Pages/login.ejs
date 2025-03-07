@@ -1,172 +1,108 @@
 <!DOCTYPE html>
-<html dir="ltr">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords"
-    content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template" />
-  <meta name="description"
-    content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework" />
-  <meta name="robots" content="noindex,nofollow" />
-  <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
-  <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png" />
-  <!-- Custom CSS -->
-  <link href="../dist/css/style.min.css" rel="stylesheet" />
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background-image: url(img/technology-abstract-background-with-particle-lines.jpg);
+        height: 100vh;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.1); /* Transparent White */
+        backdrop-filter: blur(10px); /* Glassmorphism Effect */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .form-label {
+        color: white;
+      }
+
+      .form-control {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+      }
+
+      .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .btn-primary {
+        background-color: #ff0000; /* Rover Red */
+        border-color: #cc0000;
+      }
+
+      .btn-primary:hover {
+        background-color: #cc0000;
+      }
+    </style>
 </head>
-
-<body>
-  <div class="main-wrapper">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-      <div class="lds-ripple">
-        <div class="lds-pos"></div>
-        <div class="lds-pos"></div>
-      </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Login box.scss -->
-    <!-- ============================================================== -->
-    <div class="
-          auth-wrapper
-          d-flex
-          no-block
-          justify-content-center
-          align-items-center
-          bg-dark
-        ">
-      <div class="auth-box bg-dark border-top border-secondary">
-        <div id="loginform">
-          <div class="text-center pt-3 pb-3">
-            <span class="db"><img src="../assets/images/logo.png" alt="logo" /></span>
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 350px;">
+        <h3 class="text-center mb-3 text-white">Login</h3>
+        <%if(message [0]) { %>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%= message[0] %>
           </div>
-          <% if (message) { %>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <%= message[0] %>
+          <% } %>
+        <form id="loginForm" method="post" action="/api/admin/login">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
             </div>
-            <% } %>
-              <!-- Form -->
-              <form class="form-horizontal mt-3" id="loginform" method="post" action="/api/admin/login">
-                <div class="row pb-4">
-                  <div class="col-12">
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text bg-success text-white h-100" id="basic-addon1"><i
-                            class="mdi mdi-account fs-4"></i></span>
-                      </div>
-                      <input type="text" name="email" class="form-control form-control-lg" placeholder="Email"
-                        aria-label="Username" aria-describedby="basic-addon1" required="" />
-                    </div>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text bg-warning text-white h-100" id="basic-addon2"><i
-                            class="mdi mdi-lock fs-4"></i></span>
-                      </div>
-                      <input type="number" name="password" class="form-control form-control-lg" placeholder="Password"
-                        aria-label="Password" aria-describedby="basic-addon1" required="" />
-                    </div>
-                  </div>
-                </div>
-                <div class="row border-top border-secondary">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <div class="pt-3">
-                        <button class="btn btn-info" id="to-recover">
-                          <i class="mdi mdi-lock fs-4 me-1"></i> Lost password?
-                        </button>
-                        <button class="btn btn-success float-end text-white" type="submit">
-                          Login
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-        </div>
-        <div id="recoverform">
-          <div class="text-center">
-            <span class="text-white">Enter your e-mail address below and we will send you
-              instructions how to recover a password.</span>
-          </div>
-          <div class="row mt-3">
-            <!-- Form -->
-            <form class="col-12" method="post" action="/api/admin/forgetpassword">
-              <!-- email -->
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text bg-danger text-white h-100" id="basic-addon1"><i
-                      class="mdi mdi-email fs-4"></i></span>
-                </div>
-                <input type="text" name="email" class="form-control form-control-lg" placeholder="Email Address"
-                  aria-label="Username" aria-describedby="basic-addon1" />
-              </div>
-              <!-- pwd -->
-              <div class="row mt-3 pt-3 border-top border-secondary">
-                <div class="col-12">
-                  <a class="btn btn-success text-white" href="#" id="to-login">Back To Login</a>
-                  <button class="btn btn-info float-end">
-                    Recover
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Login box.scss -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper scss in scafholding.scss -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper scss in scafholding.scss -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Right Sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Right Sidebar -->
-    <!-- ============================================================== -->
-  </div>
-  <!-- ============================================================== -->
-  <!-- All Required js -->
-  <!-- ============================================================== -->
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap tether Core JavaScript -->
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- ============================================================== -->
-  <!-- This page plugin js -->
-  <!-- ============================================================== -->
-  <script>
-    $(".preloader").fadeOut();
-    // ==============================================================
-    // Login and Recover Password
-    // ==============================================================
-    $("#to-recover").on("click", function () {
-      $("#loginform").slideUp();
-      $("#recoverform").fadeIn();
-    });
-    $("#to-login").click(function () {
-      $("#recoverform").hide();
-      $("#loginform").fadeIn();
-    });
-  </script>
-</body>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="/register" class="btn btn-secondary">Register</a>
+                <a href="/UpdatePassword" class="btn btn-secondary">UpdatePassword</a>
+                <button type="button" class="btn btn-warning" id="forgotPassword">Lost Password?</button>
+            </div>
+        </form>
 
+        <form id="recoverForm" class="d-none" method="post" action="/api/admin/forgetpassword">
+            <h3 class="text-center mb-3 text-white">Recover Password</h3>
+            <div class="mb-3">
+                <label for="recover-email" class="form-label">Enter your Email</label>
+                <input type="email" name="email" class="form-control" id="recover-email" placeholder="Enter your email" required>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-info">Recover</button>
+                <a href="/login" class="btn btn-secondary backToLogin">Back to Login</a>
+            </div>
+        </form>
+
+       
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("forgotPassword").addEventListener("click", function() {
+            document.getElementById("loginForm").classList.add("d-none");
+            document.getElementById("recoverForm").classList.remove("d-none");
+        });
+
+        document.getElementById("register").addEventListener("click", function() {
+            document.getElementById("loginForm").classList.add("d-none");
+            document.getElementById("registerForm").classList.remove("d-none");
+        });
+
+        document.querySelectorAll(".backToLogin").forEach(button => {
+            button.addEventListener("click", function() {
+                document.getElementById("recoverForm").classList.add("d-none");
+                document.getElementById("registerForm").classList.add("d-none");
+                document.getElementById("loginForm").classList.remove("d-none");
+            });
+        });
+    </script>
+</body>
 </html>
